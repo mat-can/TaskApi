@@ -7,9 +7,7 @@ namespace TaskApi.Models
     public class Tasks
     {
         [Key]
-        [Required]
         public Guid IdTask { get; set; }
-        [Required]
         [ForeignKey("CategoryId")]
         public Guid IdCategory { get; set; }
         [Required]
