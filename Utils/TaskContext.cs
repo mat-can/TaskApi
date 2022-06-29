@@ -7,8 +7,15 @@ namespace TaskApi.Utils
     {
         public DbSet<Category> Categories { get; set; }
         public DbSet<Tasks> Tasks { get; set; }
-        public TaskContext(DbContextOptions<TaskContext> options) : base(options)
+        public TaskContext(DbContextOptions<TaskContext> options) : base(options) { }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Category>(category =>
+            {
+                category.ToTable("Category");
+                category.HasKey(p => p.IdCategory);
+                category.Property(p => p.Name).IsRequired().HasMaxLength(150);
+            });
         }
     }
 }
