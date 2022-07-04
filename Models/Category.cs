@@ -10,5 +10,6 @@ namespace TaskApi.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public virtual ICollection<Tasks> Tasks { get; set; }
+        public int Weight { get; set; }
     }
 }
