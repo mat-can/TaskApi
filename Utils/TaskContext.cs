@@ -29,6 +29,8 @@ namespace TaskApi.Utils
                 task.Property(p => p.TaskPriorities);
                 task.Property(p => p.CreateTime);
                 task.Ignore(p => p.Summary);
+                task.Property(p => p.TaskState).IsRequired();
+                task.Property(p => p.TaskTime);
             });
         }
     }

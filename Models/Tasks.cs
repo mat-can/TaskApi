@@ -14,6 +14,8 @@ namespace TaskApi.Models
         public DateTime CreateTime { get; set; }
         public virtual Category Category { get; set; }
         public string Summary { get; set; }
+        public State TaskState { get; set; } 
+        public int TaskTime { get; set; }
     }
     
     public enum Priorities
@@ -21,5 +23,12 @@ namespace TaskApi.Models
         Low,
         Medium,
         High
+    }
+    public enum State
+    {
+        Pendent,
+        InProcess,
+        Done,
+        Discarded
     }
 }
