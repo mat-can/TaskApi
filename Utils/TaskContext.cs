@@ -10,13 +10,25 @@ namespace TaskApi.Utils
         public TaskContext(DbContextOptions<TaskContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Adding seed data.
+            List <Category> categoryInit= new List<Category>();
+
+            categoryInit.Add(new Category() { IdCategory = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb4ef"), Name = "WorkStuff", Weight = 20 });
+            categoryInit.Add(new Category() { IdCategory = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb402"), Name = "PersonalStuff", Weight = 50 });
+
+            List<Tasks> taskInit = new List<Tasks>();
+
+            taskInit.Add(new Tasks() { IdTask = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb410"), IdCategory = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb4ef"), TaskPriorities = Priorities.Medium, Title = "Answer LinkedIn messages", TaskState = State.Done, CreateTime = DateTime.Now, TaskTime = 0 });
+            taskInit.Add(new Tasks() { IdTask = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb411"), IdCategory = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb402"), TaskPriorities = Priorities.Medium, Title = "Cook lunch", TaskState = State.Done, CreateTime = DateTime.Now, TaskTime = 0 });
+
             modelBuilder.Entity<Category>(category =>
             {
                 category.ToTable("Category");
                 category.HasKey(p => p.IdCategory);
                 category.Property(p => p.Name).IsRequired().HasMaxLength(150);
-                category.Property(p => p.Description);
+                category.Property(p => p.Description).IsRequired(false);
                 category.Property(p => p.Weight);
+                category.HasData(categoryInit);
             });
 
             modelBuilder.Entity<Tasks>(task =>
@@ -25,12 +37,13 @@ namespace TaskApi.Utils
                 task.HasKey(p => p.IdTask);
                 task.HasOne(p=> p.Category).WithMany(p => p.Tasks).HasForeignKey(p => p.IdCategory);
                 task.Property(p => p.Title).IsRequired().HasMaxLength(150);
-                task.Property(p => p.Description).HasMaxLength(200);
+                task.Property(p => p.Description).HasMaxLength(200).IsRequired(false);
                 task.Property(p => p.TaskPriorities);
                 task.Property(p => p.CreateTime);
                 task.Ignore(p => p.Summary);
                 task.Property(p => p.TaskState).IsRequired();
-                task.Property(p => p.TaskTime);
+                task.Property(p => p.TaskTime).IsRequired();
+                task.HasData(taskInit);
             });
         }
     }
