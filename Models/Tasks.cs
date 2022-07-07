@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace TaskApi.Models
 {
@@ -12,10 +13,13 @@ namespace TaskApi.Models
         public string Description { get; set; }
         public Priorities TaskPriorities { get; set; }
         public DateTime CreateTime { get; set; }
+        [JsonIgnore]
         public virtual Category Category { get; set; }
+        [JsonIgnore]
         public string Summary { get; set; }
         public State TaskState { get; set; } 
         public int TaskTime { get; set; }
+        public DateTime CloseTime { get; set; }
     }
     
     public enum Priorities

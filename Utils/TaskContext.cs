@@ -41,12 +41,13 @@ namespace TaskApi.Utils
                 task.HasKey(p => p.IdTask);
                 task.HasOne(p=> p.Category).WithMany(p => p.Tasks).HasForeignKey(p => p.IdCategory);
                 task.Property(p => p.Title).IsRequired().HasMaxLength(150);
-                task.Property(p => p.Description).HasMaxLength(200).IsRequired(false);
+                task.Property(p => p.Description).IsRequired(false);
                 task.Property(p => p.TaskPriorities);
                 task.Property(p => p.CreateTime);
                 task.Ignore(p => p.Summary);
-                task.Property(p => p.TaskState).IsRequired();
-                task.Property(p => p.TaskTime).IsRequired();
+                task.Property(p => p.TaskState);
+                task.Property(p => p.TaskTime);
+                task.Property(p => p.CloseTime);
                 task.HasData(taskInit);
             });
         }
