@@ -13,13 +13,17 @@ namespace TaskApi.Utils
             // Adding seed data.
             List <Category> categoryInit= new List<Category>();
 
-            categoryInit.Add(new Category() { IdCategory = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb4ef"), Name = "WorkStuff", Weight = 20 });
+            categoryInit.Add(new Category() { IdCategory = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb4ef"), Name = "WorkStuff", Weight = 50 });
             categoryInit.Add(new Category() { IdCategory = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb402"), Name = "PersonalStuff", Weight = 50 });
+            categoryInit.Add(new Category() { IdCategory = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb448"), Name = "HobbieStuff", Weight = 50 });
 
             List<Tasks> taskInit = new List<Tasks>();
 
-            taskInit.Add(new Tasks() { IdTask = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb410"), IdCategory = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb4ef"), TaskPriorities = Priorities.Medium, Title = "Answer LinkedIn messages", TaskState = State.Done, CreateTime = DateTime.Now, TaskTime = 0 });
-            taskInit.Add(new Tasks() { IdTask = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb411"), IdCategory = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb402"), TaskPriorities = Priorities.Medium, Title = "Cook lunch", TaskState = State.Done, CreateTime = DateTime.Now, TaskTime = 0 });
+            taskInit.Add(new Tasks() { IdTask = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb410"), IdCategory = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb4ef"), TaskPriorities = Priorities.Medium, Title = "Answer LinkedIn messages", TaskState = State.Done, CreateTime = DateTime.Now, TaskTime = 5 });
+            taskInit.Add(new Tasks() { IdTask = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb412"), IdCategory = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb402"), TaskPriorities = Priorities.Medium, Title = "Cook lunch", TaskState = State.Done, CreateTime = DateTime.Now, TaskTime = 40 });
+            taskInit.Add(new Tasks() { IdTask = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb413"), IdCategory = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb402"), TaskPriorities = Priorities.Low, Title = "Sweep kitchen floor", TaskState = State.Pendent, CreateTime = DateTime.Now, TaskTime = 0 });
+            taskInit.Add(new Tasks() { IdTask = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb414"), IdCategory = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb448"), TaskPriorities = Priorities.Medium, Title = "Finish shingeki", TaskState = State.InProcess, CreateTime = DateTime.Now, TaskTime = 0 });
+            taskInit.Add(new Tasks() { IdTask = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb415"), IdCategory = Guid.Parse("fe2de405-c38e-4c90-ac52-da0540dfb4ef"), TaskPriorities = Priorities.High, Title = "Pay health ensurance", TaskState = State.Pendent, CreateTime = DateTime.Now, TaskTime = 0 });
 
             modelBuilder.Entity<Category>(category =>
             {
