@@ -86,4 +86,38 @@ app.MapPut("/api/tasks/updateCategory/{id}", async ([FromServices] TaskContext d
     }
 });
 
+/// Task delete endpoint.
+app.MapDelete("/api/tasks/deleteTask/{id}", async ([FromServices] TaskContext dbContext, [FromRoute] Guid id) =>
+{
+    var currentTask = dbContext.Tasks.Find(id);
+    if (currentTask != null)
+    {
+        dbContext.Remove(currentTask);
+
+        await dbContext.SaveChangesAsync();
+        return Results.Ok();
+    }
+    else
+    {
+        return Results.NotFound();
+    }
+});
+
+/// Category delete endpoint.
+app.MapDelete("/api/tasks/deleteCategory/{id}", async ([FromServices] TaskContext dbContext, [FromRoute] Guid id) =>
+{
+    var currentCategory = dbContext.Tasks.Find(id);
+    if (currentCategory != null)
+    {
+        dbContext.Remove(currentCategory);
+
+        await dbContext.SaveChangesAsync();
+        return Results.Ok();
+    }
+    else
+    {
+        return Results.NotFound();
+    }
+});
+
 app.Run();
